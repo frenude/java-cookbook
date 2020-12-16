@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 第一个JAVA程序 &mdash; Java-Cookbook 0.1.1 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="2. 编程规范" href="programmingspecification.html" />
+    <link rel="prev" title="Welcome to 1’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Java-Cookbook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. 第一个<code class="docutils literal notranslate"><span class="pre">JAVA</span></code>程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programmingspecification.html">2. 编程规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constant.html">3. 常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable.html">4. 变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">5. 运算符</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processcontrol.html">6. 流程控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="array.html">7. 数组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopfirst.html">8. 面向对象-上</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopsecond.html">9. 面对对象-中</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopthird.html">10. 面对对象-下</a></li>
+<li class="toctree-l1"><a class="reference internal" href="throw.html">11. 异常</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java-Cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>第一个<code class="docutils literal notranslate"><span class="pre">JAVA</span></code>程序</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/helloworld.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="java">
+<h1><span class="section-number">1. </span>第一个<code class="docutils literal notranslate"><span class="pre">JAVA</span></code>程序<a class="headerlink" href="#java" title="永久链接至标题">¶</a></h1>
+<p>话不多说学任何语言都会经历的。<code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">Word!</span></code></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hello</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hello Word!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>一个<code class="docutils literal notranslate"><span class="pre">java</span></code>文件中有且仅有一个<code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">class</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span></code>权限修饰符后面会说到。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">class</span></code>声明类的关键字。什么是类？什么是关键字？待后面一一道来。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code>方法是<code class="docutils literal notranslate"><span class="pre">java</span></code>程序的入口，因此执行逻辑必须有<code class="docutils literal notranslate"><span class="pre">main</span></code>方法</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">static</span></code>声明静态的关键字。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">void</span> <span class="pre">main(String[]</span> <span class="pre">args)</span> </code>入口方法(函数),若<code class="docutils literal notranslate"><span class="pre">Java</span></code>编程的程序想执行,这个方法必须写</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code> 标记 在标记中书写程序(代码)只要是括号都必须 [成对]出现</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">;</span></code>语句结束的标志。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">System.out.println(&quot;Hello</span> <span class="pre">Word!&quot;)</span></code>打印语句</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">()</span></code>中需要使用 字符串或是变量(常量)或表达式</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IDEA</span></code>开发中可以设置创建<code class="docutils literal notranslate"><span class="pre">.java</span></code>文件自带<code class="docutils literal notranslate"><span class="pre">main</span></code>方法，不过不推荐。我们可以创建完<code class="docutils literal notranslate"><span class="pre">.java</span></code>文件，然后在<code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">class</span></code>公共类中 敲打<code class="docutils literal notranslate"><span class="pre">main</span></code>+<code class="docutils literal notranslate"><span class="pre">Tab</span></code> 会自动给我生成<code class="docutils literal notranslate"><span class="pre">main</span></code>方法</p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="programmingspecification.html" class="btn btn-neutral float-right" title="2. 编程规范" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to 1’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 版权所有 2020, Frenude
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

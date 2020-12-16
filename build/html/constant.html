@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 常量 &mdash; Java-Cookbook 0.1.1 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="4. 变量" href="variable.html" />
+    <link rel="prev" title="2. 编程规范" href="programmingspecification.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Java-Cookbook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="helloworld.html">1. 第一个<code class="docutils literal notranslate"><span class="pre">JAVA</span></code>程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programmingspecification.html">2. 编程规范</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 常量</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 常量的概念：</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="variable.html">4. 变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">5. 运算符</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processcontrol.html">6. 流程控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="array.html">7. 数组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopfirst.html">8. 面向对象-上</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopsecond.html">9. 面对对象-中</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopthird.html">10. 面对对象-下</a></li>
+<li class="toctree-l1"><a class="reference internal" href="throw.html">11. 异常</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java-Cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">3. </span>常量</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/constant.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">3. </span>常量<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">3.1. </span>常量的概念：<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>在程序运行过程中其值不可改变的量就是常量。</p></li>
+<li><p>分类</p>
+<ul>
+<li><p>字符串常量： 使用双引号包裹。 比如<code class="docutils literal notranslate"><span class="pre">&quot;HelloWorld&quot;</span></code>， <code class="docutils literal notranslate"><span class="pre">&quot;你好&quot;</span></code></p></li>
+<li><p>整数常量：普通的整数。 比如<code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">-10</span></code></p></li>
+<li><p>小数（浮点）常量：普通的小数。 比如<code class="docutils literal notranslate"><span class="pre">-3.14</span></code>， <code class="docutils literal notranslate"><span class="pre">10.28</span></code></p></li>
+<li><p>布尔常量：有点特殊，只有两个，分别是<code class="docutils literal notranslate"><span class="pre">true</span></code>（真）和<code class="docutils literal notranslate"><span class="pre">false</span></code>（假），一般用于条件判断。</p></li>
+<li><p>字符常量：使用单引号包裹，单引号中有且只能有一个内容。 比如： <code class="docutils literal notranslate"><span class="pre">'a'</span></code>, <code class="docutils literal notranslate"><span class="pre">'中'</span></code></p></li>
+<li><p>空常量： <code class="docutils literal notranslate"><span class="pre">null</span></code></p></li>
+<li><p>关键字 <code class="docutils literal notranslate"><span class="pre">final</span></code> 一旦修饰不能改变 常量名必须大写</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="variable.html" class="btn btn-neutral float-right" title="4. 变量" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="programmingspecification.html" class="btn btn-neutral float-left" title="2. 编程规范" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 版权所有 2020, Frenude
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

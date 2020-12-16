@@ -1,0 +1,645 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 编程规范 &mdash; Java-Cookbook 0.1.1 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="3. 常量" href="constant.html" />
+    <link rel="prev" title="1. 第一个JAVA程序" href="helloworld.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Java-Cookbook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="helloworld.html">1. 第一个<code class="docutils literal notranslate"><span class="pre">JAVA</span></code>程序</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 编程规范</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 基本语法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 注释</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.2.1. 作用：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.2.2. 单行注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.2.3. 多行注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.2.4. 文档注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">2.2.5. 好处：</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#keyword">2.3. 关键字(keyword)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">2.3.1. 何为关键字(keyword)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">2.3.2. 保留字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tables">2.3.3. 绘制表格 Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#identifier">2.4. 标识符(Identifier)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">2.4.1. 标识符：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">2.4.2. 定义合法标识符规则：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#java">2.4.3. <code class="docutils literal notranslate"><span class="pre">Java</span></code>中的名称命名规范：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">2.4.4. 注意</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">2.5. 语句分隔符</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constant.html">3. 常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable.html">4. 变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">5. 运算符</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processcontrol.html">6. 流程控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="array.html">7. 数组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopfirst.html">8. 面向对象-上</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopsecond.html">9. 面对对象-中</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopthird.html">10. 面对对象-下</a></li>
+<li class="toctree-l1"><a class="reference internal" href="throw.html">11. 异常</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java-Cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">2. </span>编程规范</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/programmingspecification.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">2. </span>编程规范<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">2.1. </span>基本语法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>编写<code class="docutils literal notranslate"><span class="pre">Java</span></code> 程序时，应注意以下几点：</p>
+<ul class="simple">
+<li><p><strong>大小写敏感</strong>：<code class="docutils literal notranslate"><span class="pre">Java</span></code> 是大小写敏感的，这就意味着标识符 <code class="docutils literal notranslate"><span class="pre">Hello</span></code> 与<code class="docutils literal notranslate"><span class="pre">hello</span></code>是不同的。</p></li>
+<li><p><strong>类名</strong>：对于所有的类来说，类名的首字母应该大写。如果类名由若干单词组成，那么每个单词的首字母应该大写，例如 <strong>MyFirstJavaClass</strong> 。</p></li>
+<li><p><strong>方法名</strong>：所有的方法名都应该以小写字母开头。如果方法名含有若干单词，则后面的每个单词首字母大写。</p></li>
+<li><p><strong>源文件名</strong>：源文件名必须和类名相同。当保存文件的时候，你应该使用类名作为文件名保存（切记 <code class="docutils literal notranslate"><span class="pre">Java</span></code> 是大小写敏感的），文件名的后缀为<code class="docutils literal notranslate"> <span class="pre">.java</span></code>。（如果文件名和类名不相同则会导致编译错误）。</p></li>
+<li><p><strong>主方法入口</strong>：所有的 <code class="docutils literal notranslate"><span class="pre">Java</span></code> 程序由 <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">void</span> <span class="pre">main(String[]</span> <span class="pre">args)</span></code> 方法开始执行。</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">2.2. </span>注释<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3><span class="section-number">2.2.1. </span>作用：<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p><strong>是用来对程序进行解释说明的文字。</strong></p>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">2.2.2. </span>单行注释<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// 注释内容</span>
+<span class="c1">// 注释内容</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">2.2.3. </span>多行注释<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*注释内容*/</span>
+<span class="cm">/*</span>
+<span class="cm">* 注释内容</span>
+<span class="cm">* 注释内容</span>
+<span class="cm">* 注释内容</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">2.2.4. </span>文档注释<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**注释内容*/</span>
+<span class="cm">/**</span>
+<span class="cm"> * @Author: Frenude</span>
+<span class="cm"> * @Description: 文档注释</span>
+<span class="cm"> * @Date: Created in 11 09,2020</span>
+<span class="cm"> * @Modified By:</span>
+<span class="cm"> */</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">2.2.5. </span>好处：<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p><strong>注释可以提高程序的阅读性。</strong></p>
+<blockquote>
+<div><p>​	<strong>注：被注释的是不会被编译和执行的</strong></p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="keyword">
+<h2><span class="section-number">2.3. </span>关键字(keyword)<a class="headerlink" href="#keyword" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id9">
+<h3><span class="section-number">2.3.1. </span>何为关键字(keyword)<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>定义：被 <code class="docutils literal notranslate"><span class="pre">Java</span></code> 语言赋予了特殊含义，用做专门用途的字符串（单词）</p></li>
+<li><p>特点：</p>
+<ol class="simple">
+<li><p>所有的字母都小写。</p></li>
+<li><p>在高级的编辑器中会变色。</p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">关键字</a></p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">2.3.2. </span>保留字<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>Java 保留字：现有 Java 版本尚未使用 但以后版本可能会作为关键字使用。自己命名标识符时要避免使用这些保留字
+goto 、 const</p>
+</div></blockquote>
+</div>
+<div class="section" id="tables">
+<h3><span class="section-number">2.3.3. </span>绘制表格 Tables<a class="headerlink" href="#tables" title="永久链接至标题">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="left">类别</th>
+<th align="left">关键字</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">访问控制</td>
+<td align="left">private</td>
+<td align="left">私有的</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">protected</td>
+<td align="left">受保护的</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">public</td>
+<td align="left">公共的</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">default</td>
+<td align="left">默认</td>
+</tr>
+<tr>
+<td align="left">类、方法和变量修饰符</td>
+<td align="left">abstract</td>
+<td align="left">声明抽象</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">class</td>
+<td align="left">类</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">extends</td>
+<td align="left">继承</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">final</td>
+<td align="left">最终值,不可改变的</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">implements</td>
+<td align="left">实现（接口）</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">interface</td>
+<td align="left">接口</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">native</td>
+<td align="left">本地，原生方法（非 Java 实现）</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">new</td>
+<td align="left">新,创建</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">static</td>
+<td align="left">静态</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">strictfp</td>
+<td align="left">严格,精准</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">synchronized</td>
+<td align="left">线程,同步</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">transient</td>
+<td align="left">短暂</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">volatile</td>
+<td align="left">易失</td>
+</tr>
+<tr>
+<td align="left">程序控制语句</td>
+<td align="left">break</td>
+<td align="left">跳出循环</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">case</td>
+<td align="left">定义一个值以供 switch 选择</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">continue</td>
+<td align="left">继续</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">default</td>
+<td align="left">默认</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">do</td>
+<td align="left">运行</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">else</td>
+<td align="left">否则</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">for</td>
+<td align="left">循环</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">if</td>
+<td align="left">如果</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">instanceof</td>
+<td align="left">实例</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">return</td>
+<td align="left">返回</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">switch</td>
+<td align="left">根据值选择执行</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">while</td>
+<td align="left">循环</td>
+</tr>
+<tr>
+<td align="left">错误处理</td>
+<td align="left">assert</td>
+<td align="left">断言表达式是否为真</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">catch</td>
+<td align="left">捕捉异常</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">finally</td>
+<td align="left">有没有异常都执行</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">throw</td>
+<td align="left">抛出一个异常对象</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">throws</td>
+<td align="left">声明一个异常可能被抛出</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">try</td>
+<td align="left">捕获异常</td>
+</tr>
+<tr>
+<td align="left">包相关</td>
+<td align="left">import</td>
+<td align="left">引入</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">package</td>
+<td align="left">包</td>
+</tr>
+<tr>
+<td align="left">基本类型</td>
+<td align="left">boolean</td>
+<td align="left">布尔型</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">byte</td>
+<td align="left">字节型</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">char</td>
+<td align="left">字符型</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">double</td>
+<td align="left">双精度浮点</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">float</td>
+<td align="left">单精度浮点</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">int</td>
+<td align="left">整型</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">long</td>
+<td align="left">长整型</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">short</td>
+<td align="left">短整型</td>
+</tr>
+<tr>
+<td align="left">变量引用</td>
+<td align="left">super</td>
+<td align="left">父类,超类</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">this</td>
+<td align="left">本类</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">void</td>
+<td align="left">无返回值</td>
+</tr>
+<tr>
+<td align="left">保留关键字</td>
+<td align="left">goto</td>
+<td align="left">是关键字，但不能使用</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">const</td>
+<td align="left">是关键字，但不能使用</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">null</td>
+<td align="left">空</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="identifier">
+<h2><span class="section-number">2.4. </span>标识符(Identifier)<a class="headerlink" href="#identifier" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id11">
+<h3><span class="section-number">2.4.1. </span>标识符：<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Java</span></code>对各种 变量 、 方法 和 类 等要素命名时使用的字符序列称为标识符。</p></li>
+<li><p>技巧：凡是自己可以起名字的地方都叫标识符。</p></li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h3><span class="section-number">2.4.2. </span>定义合法标识符规则：<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>由26个英文字母大小写，<code class="docutils literal notranslate"><span class="pre">0-9</span></code> ，<code class="docutils literal notranslate"><span class="pre">_</span></code>或<code class="docutils literal notranslate"><span class="pre">$</span></code> 组成</p></li>
+<li><p>数字不可以开头。</p></li>
+<li><p>不可以使用关键字和保留字，但能包含关键字和保留字。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Java</span></code>中严格区分大小写，长度无限制。</p></li>
+<li><p>标识符不能包含空格。</p></li>
+</ul>
+</div>
+<div class="section" id="java">
+<h3><span class="section-number">2.4.3. </span><code class="docutils literal notranslate"><span class="pre">Java</span></code>中的名称命名规范：<a class="headerlink" href="#java" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>包名：多单词组成时所有字母都小写：<code class="docutils literal notranslate"><span class="pre">xxxyyyzzz</span></code></p></li>
+<li><p>类名、接口名：多单词组成时，所有单词的首字母大写：<code class="docutils literal notranslate"><span class="pre">XxxYyyZzz</span></code></p></li>
+<li><p>变量名、方法名：多单词组成时，第一个单词首字母小写，第二个单词开始每个单词首字母大写：<code class="docutils literal notranslate"><span class="pre">xxxYyyZzz</span></code></p></li>
+<li><p>常量名：所有字母都大写。多单词时每个单词用下划线连接：<code class="docutils literal notranslate"><span class="pre">XXX_YYY_ZZZ</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h3><span class="section-number">2.4.4. </span>注意<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>在起名字时，为了提高阅读性，要尽量有意义，“见名知意”。</p></li>
+<li><p>java采用unicode字符集，因此标识符也可以使用汉字声明，但是不建议使用。</p></li>
+</ul>
+</div></blockquote>
+<p>更多细节详见《<a class="reference external" href="https://github.com/frenude/java-basic-doc/blob/main/pdf/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93.pdf">代码整洁之道.pdf</a>》</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h2><span class="section-number">2.5. </span>语句分隔符<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"> <span class="pre">;</span></code> ：分号 一句话的结束</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{}</span></code> ：方法体 或 类体 逻辑描述 或 类的描述</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[]</span></code> ：数组 和 访问数组元素(下标)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">()</span></code>  ：很广,具体用到具体解释</p></li>
+<li><p><code class="docutils literal notranslate"> <span class="pre">空格</span></code>：分隔语句</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.</span></code>：<code class="docutils literal notranslate"><span class="pre">对象.属性</span></code> 和<code class="docutils literal notranslate"><span class="pre">对象.方法</span></code></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="constant.html" class="btn btn-neutral float-right" title="3. 常量" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="helloworld.html" class="btn btn-neutral float-left" title="1. 第一个JAVA程序" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 版权所有 2020, Frenude
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

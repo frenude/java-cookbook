@@ -1,0 +1,860 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. 数组 &mdash; Java-Cookbook 0.1.1 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="8. 面向对象-上" href="oopfirst.html" />
+    <link rel="prev" title="6. 流程控制" href="processcontrol.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Java-Cookbook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="helloworld.html">1. 第一个<code class="docutils literal notranslate"><span class="pre">JAVA</span></code>程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programmingspecification.html">2. 编程规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constant.html">3. 常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable.html">4. 变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">5. 运算符</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processcontrol.html">6. 流程控制</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. 数组</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">7.1. 数组概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">7.2. 一维数组</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">7.2.1. 声明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">7.2.2. 初始化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">7.2.3. 数组元素的引用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">7.2.4. 数组元素默认初始化值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">7.2.5. 一维数组创建过程</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">7.3. 多维数组</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">7.3.1. 何为二维数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">7.3.2. 二维数组的声明与初始化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">7.3.3. 二维数组初始化值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">7.3.4. 数组数据元素的访问</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">7.4. 数组的常见算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">7.4.1. 数组的创建与元素赋值：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">7.4.2. 针对于数值型的数组：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">7.4.3. 数组的赋值与复制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">7.4.4. 数组元素的反转</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">7.4.5. 数组中指定元素的查找：搜索、检索</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id20">7.5. 数组的排序算法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id21">7.5.1. 十大内部排序算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">7.5.2. 衡量排序算法的优劣：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">7.5.3. 排序的分类：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">7.5.4. 不同排序算法的时间复杂度</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">7.5.5. 冒泡和快排的实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oopfirst.html">8. 面向对象-上</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopsecond.html">9. 面对对象-中</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopthird.html">10. 面对对象-下</a></li>
+<li class="toctree-l1"><a class="reference internal" href="throw.html">11. 异常</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java-Cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">7. </span>数组</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/array.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">7. </span>数组<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">7.1. </span>数组概述<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>数组(Array)，是多个相同类型数据按一定顺序排列的集合，并使用一个名字命名，并通过编号的方式对这些数据进行统一管理。</p></li>
+<li><p>数组的常见概念</p>
+<ul>
+<li><p>数组名</p></li>
+<li><p>下标(或索引)</p></li>
+<li><p>元素</p></li>
+<li><p>数组的长度</p></li>
+</ul>
+</li>
+<li><p>数组本身是引用数据类型，而数组中的元素可以是任何数据类型，包括基本数据类型和引用数据类型。</p></li>
+<li><p>创建数组对象会在内存中开辟一整块连续的空间，而数组名中引用的是这块连续空间的首地址。</p></li>
+<li><p>数组的长度一旦确定，就不能修改。</p></li>
+<li><p>我们可以直接通过下标(或索引)的方式调用指定位置的元素，速度很快。</p></li>
+<li><p>数组的分类：</p>
+<ul>
+<li><p>按照维度：一维数组、二维数组、三维数组、…</p></li>
+<li><p>按照元素的数据类型分：基本数据类型元素的数组、引用数据类型元素的数组(即对象数组)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">7.2. </span>一维数组<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h3><span class="section-number">7.2.1. </span>声明<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>声明方式</p>
+<p><code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">var[]</span></code>或者<code class="docutils literal notranslate"><span class="pre">type[]</span> <span class="pre">var</span></code></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Java</span></code>语言中声明数组时不能指定其长度(数组中元素的数)例如： <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">a[5];</span></code>—-&gt;非法</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">7.2.2. </span>初始化<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>动态初始化：数组声明且为数组元素分配空间与赋值的操作分开进行</p></li>
+<li><p>静态初始化：在定义数组的同时就为数组元素分配空间并赋值。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">[]</span> <span class="n">ids</span><span class="p">;</span><span class="c1">//声明</span>
+<span class="c1">//1.1 静态初始化:数组的初始化和数组元素的赋值操作同时进行</span>
+<span class="n">ids</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span><span class="p">{</span><span class="mi">1001</span><span class="p">,</span><span class="mi">1002</span><span class="p">,</span><span class="mi">1003</span><span class="p">,</span><span class="mi">1004</span><span class="p">};</span>
+<span class="c1">//1.2动态初始化:数组的初始化和数组元素的赋值操作分开进行</span>
+<span class="n">String</span><span class="o">[]</span> <span class="n">names</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="mi">5</span><span class="o">]</span><span class="p">;</span> <span class="c1">// 声明 + 初始化</span>
+<span class="c1">//1.3类型推断</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr4</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">7.2.3. </span>数组元素的引用<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>定义并用运算符<code class="docutils literal notranslate"><span class="pre">new</span></code>为之分配空间后，才可以引用数组中的每个元素</p></li>
+<li><p>数组元素的引用方式：数组名[数组元素下标]</p>
+<ul>
+<li><p>数组元素下标可以是整型常量或整型表达式。如<code class="docutils literal notranslate"><span class="pre">a[3]</span> <span class="pre">,</span> <span class="pre">b[i]</span> <span class="pre">,</span> <span class="pre">c[6*i];</span></code></p></li>
+<li><p>数组元素下标从<code class="docutils literal notranslate"><span class="pre">0</span></code>开始；长度为n的数组合法下标取值范围: <code class="docutils literal notranslate"><span class="pre">0~n-1</span></code>；如<code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">a[]=new</span> <span class="pre">int[3];</span></code>  可引用的数组元素为<code class="docutils literal notranslate"><span class="pre">a[0]、a[1]、a[2]</span></code></p></li>
+</ul>
+</li>
+<li><p>每个数组都有一个属性<code class="docutils literal notranslate"><span class="pre">length</span></code>指明它的长度，例如：<code class="docutils literal notranslate"><span class="pre">a.length</span></code> 指明数组a的长度(元素个数)</p>
+<ul>
+<li><p>数组一旦初始化，其长度是不可变的</p></li>
+</ul>
+</li>
+<li><p>数组是引用类型，它的元素相当于类的成员变量，因此数组一经分配空间，其中的每个元素也被按照成员变量同样的方式被隐式初始化。</p>
+<ul>
+<li><p>对于基本数据类型而言，默认初始化值各有不同</p></li>
+<li><p>对于引用数据类型而言，默认初始化值为<code class="docutils literal notranslate"><span class="pre">null</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">7.2.4. </span>数组元素默认初始化值<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>数组元素类型</th>
+<th>元素默认初始化值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>0L</td>
+</tr>
+<tr>
+<td>float</td>
+<td>0.0F</td>
+</tr>
+<tr>
+<td>double</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>char</td>
+<td>0 或写为:<code>\u0000</code>(表现为空)</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>引用类型</td>
+<td>null</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="id8">
+<h3><span class="section-number">7.2.5. </span>一维数组创建过程<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p><img alt="一维数组创建" src="_images/Arraycreation.gif" /></p>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><span class="section-number">7.3. </span>多维数组<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id10">
+<h3><span class="section-number">7.3.1. </span>何为二维数组<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>数组属于引用数据类型</p></li>
+<li><p>数组的元素也可以是引用数据类型</p></li>
+<li><p>一个一维数组A的元素如果还是一个一维数组类型的，则，此数组A称为二维数组。</p></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3><span class="section-number">7.3.2. </span>二维数组的声明与初始化<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span><span class="c1">//一维数组</span>
+<span class="c1">//静态初始化1</span>
+<span class="kt">int</span><span class="o">[][]</span> <span class="n">arr1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[][]</span><span class="p">{{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">}};</span>
+<span class="c1">//动态初始化</span>
+<span class="n">String</span><span class="o">[][]</span> <span class="n">arr2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="mi">3</span><span class="o">][</span><span class="mi">2</span><span class="o">]</span><span class="p">;</span>
+<span class="c1">// 动态初始化2</span>
+<span class="n">String</span><span class="o">[][]</span> <span class="n">arr3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="mi">3</span><span class="o">][]</span><span class="p">;</span>
+<span class="c1">// 正确写法</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr4</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[][]</span><span class="p">{{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">},</span> <span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">}};</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">arr5</span><span class="o">[]</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">}};</span> <span class="c1">// 类型推断</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>注意特殊写法情况：<code class="docutils literal notranslate"><span class="pre">int[]</span> <span class="pre">x,y[];</span></code> x是一维数组，y是二维数组。</p></li>
+<li><p>Java中多维数组不必都是规则矩阵形式</p></li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h3><span class="section-number">7.3.3. </span>二维数组初始化值<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>二维数组分为外层数组的元素，内层数组的元素</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">[][]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">4</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+<span class="c1">//外层元素：arr[0],arr[1]等</span>
+<span class="c1">//内层元素：arr[0][0],arr[1][2]等</span>
+</pre></div>
+</div>
+</li>
+<li><p>数组元素的默认初始化值</p>
+<ul class="simple">
+<li><p>针对于初始化方式一：比如：<code class="docutils literal notranslate"><span class="pre">int[][]</span> <span class="pre">arr</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">int[4][3];</span></code></p>
+<ul>
+<li><p>外层元素的初始化值为：地址值</p></li>
+<li><p>内层元素的初始化值为：与一维数组初始化情况相同</p></li>
+</ul>
+</li>
+<li><p>针对于初始化方式二：比如：<code class="docutils literal notranslate"><span class="pre">int[][]</span> <span class="pre">arr</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">int[4][];</span></code></p>
+<ul>
+<li><p>外层元素的初始化值为：<code class="docutils literal notranslate"><span class="pre">null</span></code></p></li>
+<li><p>内层元素的初始化值为：不能调用，否则报错。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="二维数组" src="_images/Twoarray.gif" /></p>
+</div>
+<div class="section" id="id13">
+<h3><span class="section-number">7.3.4. </span>数组数据元素的访问<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>通过索引下标</p>
+<ul class="simple">
+<li><p>数组通过索引下标<code class="docutils literal notranslate"><span class="pre">index</span></code>来进行数组元素的访问，第一个元素的<code class="docutils literal notranslate"><span class="pre">index</span></code>为0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">java</span></code>不能像<code class="docutils literal notranslate"><span class="pre">python</span></code>一样通过 <code class="docutils literal notranslate"><span class="pre">-1,</span> <span class="pre">-2</span></code> 进行倒序索引查找</p></li>
+</ul>
+</li>
+<li><p>通过循环来访问</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// 普通的for循环</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+        <span class="c1">//普通for循环</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">Math</span><span class="p">.</span><span class="na">random</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// for each </span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">Math</span><span class="p">.</span><span class="na">random</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// for each</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span> <span class="p">:</span> <span class="n">arr</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>下面代码方便理解<code class="docutils literal notranslate"><span class="pre">java</span></code>二维数组</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 动态</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">ints1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">4</span><span class="o">][]</span><span class="p">;</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">ints2</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">4</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+<span class="c1">//        System.out.println(ints1[1][0]); // java.lang.NullPointerException</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ints2</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">ints5</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">][</span><span class="mi">3</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ints5</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ints5</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+
+
+        <span class="n">String</span><span class="o">[][]</span> <span class="n">strings2</span> <span class="o">=</span> <span class="k">new</span>  <span class="n">String</span><span class="o">[</span><span class="mi">4</span><span class="o">][]</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">strings2</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="c1">//        System.out.println(strings2[1][2]); // java.lang.NullPointerException</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// console :0, [I@4c203ea1 ,0 ,null</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h2><span class="section-number">7.4. </span>数组的常见算法<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id15">
+<h3><span class="section-number">7.4.1. </span>数组的创建与元素赋值：<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>杨辉三角</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span> <span class="cm">/*</span>
+<span class="cm">  1</span>
+<span class="cm">  1  1</span>
+<span class="cm">  1  2  1</span>
+<span class="cm">  1  3  3  1</span>
+<span class="cm">  1  4  6  4  1</span>
+<span class="cm">  1  5  10  10  5  1</span>
+<span class="cm">  1  6  15  20  15  6  1</span>
+<span class="cm">  1  7  21  35  35  21  7  1</span>
+<span class="cm">  1  8  28  56  70  56  28  8  1</span>
+<span class="cm">  1  9  36  84  126  126  84  36  9  1  </span>
+<span class="cm">  */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">YangHui</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">yangHui</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">][]</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">yangHui</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 给二维数组赋值</span>
+            <span class="n">yangHui</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+            <span class="n">yangHui</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">yangHui</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">yangHui</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">yangHui</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">yangHui</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">yangHui</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">yangHui</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">yangHui</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">yangHui</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot;  &quot;</span><span class="p">);</span>
+
+            <span class="p">}</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>螺旋矩阵</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span> <span class="cm">/*</span>
+<span class="cm">  *  1   2   3</span>
+<span class="cm">  *  8   9   4</span>
+<span class="cm">  *  7   6   5  </span>
+<span class="cm">  */</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SpiralMatrixII</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;请输入你想构建的螺旋矩阵长度为：&quot;</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">spiralMatrix</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">number</span><span class="o">][</span><span class="n">number</span><span class="o">]</span><span class="p">;</span>
+        <span class="c1">// 左</span>
+        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">// 右</span>
+        <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="c1">// 上</span>
+        <span class="kt">int</span> <span class="n">top</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="c1">// 下</span>
+        <span class="kt">int</span> <span class="n">bottom</span> <span class="o">=</span> <span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">insertNumber</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">resultNumber</span> <span class="o">=</span> <span class="n">number</span> <span class="o">*</span> <span class="n">number</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">insertNumber</span> <span class="o">&lt;=</span> <span class="n">resultNumber</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">spiralMatrix</span><span class="o">[</span><span class="n">top</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">insertNumber</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">top</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">top</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">bottom</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">spiralMatrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">right</span><span class="o">]</span> <span class="o">=</span> <span class="n">insertNumber</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">right</span><span class="o">--</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">left</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">spiralMatrix</span><span class="o">[</span><span class="n">bottom</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">insertNumber</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">bottom</span><span class="o">--</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">bottom</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">top</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">spiralMatrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">left</span><span class="o">]</span> <span class="o">=</span> <span class="n">insertNumber</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">left</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">spiralMatrix</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">spiralMatrix</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;%2d  &quot;</span><span class="p">,</span> <span class="n">spiralMatrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h3><span class="section-number">7.4.2. </span>针对于数值型的数组：<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>最大值</p></li>
+<li><p>最小值</p></li>
+<li><p>总和</p></li>
+<li><p>平均值</p></li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h3><span class="section-number">7.4.3. </span>数组的赋值与复制<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>赋值</p>
+<p><img alt="数组的赋值" src="_images/Assignment.gif" /></p>
+</li>
+<li><p>复制(浅copy)</p>
+<p><img alt="数组的复制" src="_images/copy.gif" /></p>
+<ul>
+<li><p>验证浅copy代码</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Person</span><span class="o">[]</span> <span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">;</span>
+        <span class="n">arr1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">arr1</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">();</span>
+        <span class="n">arr1</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="p">();</span>
+        <span class="n">arr2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">[</span><span class="n">arr1</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr2</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">arr2</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">arr2</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">arr1</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">arr1</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">name</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">arr2</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">name</span><span class="p">);</span>
+        <span class="n">arr1</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&quot;李四&quot;</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">arr1</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">name</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">arr2</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;张三&quot;</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h3><span class="section-number">7.4.4. </span>数组元素的反转<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// 方法一</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="p">;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">13</span><span class="p">};</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+			<span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">arr</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+			<span class="n">arr</span><span class="o">[</span><span class="n">arr</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+		<span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">arr</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// 方法二</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="p">;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">13</span><span class="p">};</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="n">j</span><span class="o">--</span><span class="p">){</span>
+			<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+			<span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+			<span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+		<span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">arr</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h3><span class="section-number">7.4.5. </span>数组中指定元素的查找：搜索、检索<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>线性查找：</p>
+<ul>
+<li><p>实现思路：通过遍历的方式，一个一个的数据进行比较、查找。</p></li>
+<li><p>适用性：具有普遍适用性。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hello</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span><span class="p">{</span><span class="s">&quot;JJ&quot;</span><span class="p">,</span><span class="s">&quot;DD&quot;</span><span class="p">,</span><span class="s">&quot;MM&quot;</span><span class="p">,</span><span class="s">&quot;BB&quot;</span><span class="p">,</span><span class="s">&quot;GG&quot;</span><span class="p">,</span><span class="s">&quot;AA&quot;</span><span class="p">};</span>
+        <span class="n">String</span> <span class="n">dest</span> <span class="o">=</span> <span class="s">&quot;BB&quot;</span><span class="p">;</span>
+        <span class="kt">boolean</span> <span class="n">isFlag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dest</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;找到了指定的元素，位置为：&quot;</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+                <span class="n">isFlag</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isFlag</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;很遗憾，没有找到的啦！&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>二分法查找：</p>
+<ul>
+<li><p>实现思路：每次比较中间值，折半的方式检索。</p></li>
+<li><p>适用性：（前提：数组必须有序）</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hello</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//二分法查找：(熟悉)</span>
+        <span class="c1">//前提：所要查找的数组必须有序。</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span><span class="p">{</span><span class="o">-</span><span class="mi">98</span><span class="p">,</span> <span class="o">-</span><span class="mi">34</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">210</span><span class="p">,</span> <span class="mi">333</span><span class="p">};</span>
+        <span class="kt">int</span> <span class="n">dest</span> <span class="o">=</span> <span class="o">-</span><span class="mi">34</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">head</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//初始的首索引</span>
+        <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span><span class="c1">//初始的末索引</span>
+        <span class="kt">boolean</span> <span class="n">isFlag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">head</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">head</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dest</span> <span class="o">==</span> <span class="n">arr</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;找到了指定的元素，位置为：&quot;</span> <span class="o">+</span> <span class="n">middle</span><span class="p">);</span>
+                <span class="n">isFlag</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">dest</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">end</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span><span class="c1">//arr2[middle] &lt; dest1</span>
+                <span class="n">head</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isFlag</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;很遗憾，没有找到的啦！&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id20">
+<h2><span class="section-number">7.5. </span>数组的排序算法<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id21">
+<h3><span class="section-number">7.5.1. </span>十大内部排序算法<a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>选择排序</p>
+<ul>
+<li><p>直接选择排序、堆排序</p></li>
+</ul>
+</li>
+<li><p>交换排序</p>
+<ul>
+<li><p><strong>冒泡排序</strong>、<strong>快速排序</strong></p></li>
+</ul>
+</li>
+<li><p>插入排序</p>
+<ul>
+<li><p>直接插入排序、折半插入排序、Shell排序</p></li>
+</ul>
+</li>
+<li><p>归并排序</p></li>
+<li><p>桶式排序</p></li>
+<li><p>基数排序</p></li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h3><span class="section-number">7.5.2. </span>衡量排序算法的优劣：<a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>时间复杂度</p></li>
+<li><p>空间复杂度</p></li>
+<li><p>稳定性</p></li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h3><span class="section-number">7.5.3. </span>排序的分类：<a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>内部排序</p></li>
+<li><p>外部排序（需要借助于磁盘）</p></li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h3><span class="section-number">7.5.4. </span>不同排序算法的时间复杂度<a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h3>
+<p><img alt="排序算法的时间复杂度" src="_images/timecomplexity.png" /></p>
+</div>
+<div class="section" id="id25">
+<h3><span class="section-number">7.5.5. </span>冒泡和快排的实现<a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>冒泡排序</p>
+<p><img alt="冒泡" src="_images/BubbleSort.gif" /></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bubble</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">ints</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span><span class="p">{</span><span class="o">-</span><span class="mi">77</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="o">-</span><span class="mi">32</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">22</span><span class="p">};</span>
+        <span class="c1">// 只需要排-1 次就够了</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ints</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">ints</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">ints</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">ints</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">ints</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+                    <span class="n">ints</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">ints</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+                    <span class="n">ints</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ints</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">ints</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot;\t&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>快速排序</p>
+<p><img alt="快速排序" src="_images/Quicksort.gif" /></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuickSort</span> <span class="p">{</span>
+	<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+		<span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+		<span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">subSort</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kt">int</span> <span class="n">base</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="n">start</span><span class="o">]</span><span class="p">;</span>
+			<span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span>
+			<span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">end</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">[++</span><span class="n">low</span><span class="o">]</span> <span class="o">-</span> <span class="n">base</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+					<span class="p">;</span>
+				<span class="k">while</span> <span class="p">(</span><span class="n">high</span> <span class="o">&gt;</span> <span class="n">start</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">[--</span><span class="n">high</span><span class="o">]</span> <span class="o">-</span> <span class="n">base</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+					<span class="p">;</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+					<span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">);</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="k">break</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">high</span><span class="p">);</span>
+
+			<span class="n">subSort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">high</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span><span class="c1">//递归调用</span>
+			<span class="n">subSort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">high</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="p">){</span>
+		<span class="n">subSort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">data</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="oopfirst.html" class="btn btn-neutral float-right" title="8. 面向对象-上" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="processcontrol.html" class="btn btn-neutral float-left" title="6. 流程控制" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 版权所有 2020, Frenude
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

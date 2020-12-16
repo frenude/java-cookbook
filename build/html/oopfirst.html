@@ -1,0 +1,1214 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. 面向对象-上 &mdash; Java-Cookbook 0.1.1 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="9. 面对对象-中" href="oopsecond.html" />
+    <link rel="prev" title="7. 数组" href="array.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Java-Cookbook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="helloworld.html">1. 第一个<code class="docutils literal notranslate"><span class="pre">JAVA</span></code>程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programmingspecification.html">2. 编程规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constant.html">3. 常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable.html">4. 变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">5. 运算符</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processcontrol.html">6. 流程控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="array.html">7. 数组</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. 面向对象-上</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">8.1. 何为面向对象</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#java">8.1.1. Java类及类的成员：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">8.1.2. 面向对象的三大特征</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">8.1.3. 其它关键字：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pop-oop">8.1.4. 面向过程(POP) 与 面向对象(OOP)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">8.2. 类与对象</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">8.2.1. 类与对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">8.2.2. 常见的类的成员</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">8.2.3. 类的语法格式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">8.2.4. 对象的创建和使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">8.2.5. 类加载与实例化流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">8.2.6. 类的访问机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">8.2.7. 匿名对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">8.2.8. 对象的声明周期</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">8.3. 类与类之间的关系说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependency">8.3.1. 依赖关系（Dependency）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#association">8.3.2. 关联关系（Association）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aggregation">8.3.3. 聚合（Aggregation）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#composite">8.3.4. 组合（Composite）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generalization-is-a">8.3.5. 继承（Generalization，又称为泛化，is-a 的关系）</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id15">8.4. 类的结构之一：属性</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16">8.4.1. 属性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">8.4.2. 变量的分类：成员变量与局部变量</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id18">8.5. 类的结构之一：方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#method">8.5.1. 方法(method  函数)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">8.5.2. 方法的分类：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">8.5.3. 方法的调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return">8.5.4. <code class="docutils literal notranslate"><span class="pre">return</span></code>关键字：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">8.5.5. 重载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">8.5.6. 可变个数的形参</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">8.5.7. 方法内变量的赋值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">8.5.8. 值传递机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">8.5.9. 值传递面试题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recursion">8.5.10. 递归(recursion)方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">8.6. 面向对象的特征一：封装性</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">8.6.1. 封装与隐藏</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">8.6.2. <code class="docutils literal notranslate"><span class="pre">Java</span></code>规定的四种权限修饰符</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#constructor">8.7. 构造器(Constructor）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">8.7.1. 构造器的作用：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">8.7.2. 说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#javabean">8.7.3. <code class="docutils literal notranslate"><span class="pre">JavaBean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">8.7.4. 属性赋值的先后顺序</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#this">8.8. 关键字 <code class="docutils literal notranslate"><span class="pre">this</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id32">8.8.1. <code class="docutils literal notranslate"><span class="pre">this</span></code> 可以调用的结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">8.8.2. <code class="docutils literal notranslate"><span class="pre">this</span></code>调用属性、方法：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">8.8.3. <code class="docutils literal notranslate"><span class="pre">this</span></code>调用构造器：</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#package-import">8.9. 关键字：<code class="docutils literal notranslate"><span class="pre">package/import</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#package">8.9.1. <code class="docutils literal notranslate"><span class="pre">package</span></code>的使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mvc">8.9.2. MVC的设计模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jdk">8.9.3. <code class="docutils literal notranslate"><span class="pre">JDK中</span></code>的主要包介绍：</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import">8.9.4. <code class="docutils literal notranslate"><span class="pre">import</span></code>的使用：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oopsecond.html">9. 面对对象-中</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopthird.html">10. 面对对象-下</a></li>
+<li class="toctree-l1"><a class="reference internal" href="throw.html">11. 异常</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java-Cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">8. </span>面向对象-上</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/oopfirst.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">8. </span>面向对象-上<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">8.1. </span>何为面向对象<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="java">
+<h3><span class="section-number">8.1.1. </span>Java类及类的成员：<a class="headerlink" href="#java" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>属性</p></li>
+<li><p>方法</p></li>
+<li><p>构造器</p></li>
+<li><p>代码块</p></li>
+<li><p>内部类</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">8.1.2. </span>面向对象的三大特征<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>封装性</p></li>
+<li><p>继承性</p></li>
+<li><p>多态性</p></li>
+<li><p>(抽象性)</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">8.1.3. </span>其它关键字：<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">this、super、static、final、abstract、interface、package、import</span></code></p>
+</div>
+<div class="section" id="pop-oop">
+<h3><span class="section-number">8.1.4. </span>面向过程(POP) 与 面向对象(OOP)<a class="headerlink" href="#pop-oop" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>面向过程：强调的是功能行为，以函数为最小单位，考虑怎么做。</p></li>
+<li><p>面向对象：强调具备了功能的对象，以类/对象为最小单位，考虑谁来做。</p></li>
+<li><p>面向对象更加强调运用人类在日常的思维逻辑中采用的思想方法与原则，如抽象、分类、继承、聚合、多态等。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><span class="section-number">8.2. </span>类与对象<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id6">
+<h3><span class="section-number">8.2.1. </span>类与对象<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>类：对一类事物的描述，是抽象的、概念上的定义</p></li>
+<li><p>对象：是实际存在的该类事物的每个个体，因而也称为实例(<code class="docutils literal notranslate"><span class="pre">instance</span></code>)</p></li>
+<li><p>对象，是由类new出来的，派生出来的。</p></li>
+<li><blockquote>
+<div><p>面向对象程序设计的重点是类的设计
+设计类，就是设计类的成员。</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">8.2.2. </span>常见的类的成员<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>属 性：对应类中的成员变量</p></li>
+<li><p>行为：对应类中的成员方法</p></li>
+<li><p>概念说明</p>
+<ul class="simple">
+<li><p>属性 = 成员变量 = 域、字段= field</p></li>
+</ul>
+<ul class="simple">
+<li><p>方法 = 成员方法 = 函数 = method</p></li>
+<li><p>创建类的对象 = 类的实例化 = 实例化类</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">类version_1.0</span></code></p>
+<p><img alt="image-20201207141805249" src="_images/classone.png" /></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">类version_2.0</span></code></p>
+<p><img alt="image-20201207142036122" src="_images/classtwo.png" /></p>
+</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3><span class="section-number">8.2.3. </span>类的语法格式<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">修饰符</span> <span class="kd">class</span> <span class="nc">类名</span><span class="p">{</span>
+    <span class="n">属性声明</span><span class="p">;</span>
+    <span class="n">方法声明</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">类的正文要用</span><span class="p">{</span>  <span class="p">}</span><span class="n">括起来</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3><span class="section-number">8.2.4. </span>对象的创建和使用<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>创建对象语法：<code class="docutils literal notranslate"> <span class="pre">类名</span> <span class="pre">对象名</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">类名();</span></code></p></li>
+<li><p>使用<code class="docutils literal notranslate"><span class="pre">对象名.对象成员</span></code>的方式访问对象成员（包括属性和方法）</p></li>
+<li><p>注意：如果创建了一个类的多个对象，对于类中定义的属性，每个对象都拥有各自的一套副本，且互不干扰。</p></li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">8.2.5. </span>类加载与实例化流程<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p><img alt="类加载与实例化流程" src="_images/Classcreationandinstantiationprocess.gif" /></p>
+<ul>
+<li><p>执行<code class="docutils literal notranslate"><span class="pre">main</span></code>函数首先在方法区加载<code class="docutils literal notranslate"><span class="pre">PersonTest.class</span></code>文件</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Person</span> <span class="pre">person1</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">Person();</span></code></p>
+<ul class="simple">
+<li><p>在栈内存中开辟<code class="docutils literal notranslate"><span class="pre">main</span></code>函数的空间,建立<code class="docutils literal notranslate"><span class="pre">main</span></code>函数中的局部变量<code class="docutils literal notranslate"><span class="pre">person1</span></code></p></li>
+<li><p>加载类文件：因为<code class="docutils literal notranslate"><span class="pre">new</span></code>要用到<code class="docutils literal notranslate"><span class="pre">Person.class</span></code>,所以要先从硬盘中找到<code class="docutils literal notranslate"><span class="pre">Person.class</span></code>类文件，并加载到内存中。</p></li>
+<li><p>加载类文件时，除了非静态成员变量（对象的特有属性）不会被加载，其它的都会被加载。</p></li>
+<li><p>在堆空间中创建<code class="docutils literal notranslate"><span class="pre">person</span></code>对象<code class="docutils literal notranslate"><span class="pre">4c203e2a</span></code>并且默认初始值<code class="docutils literal notranslate"><span class="pre">name</span> <span class="pre">=</span> <span class="pre">null;age</span> <span class="pre">=</span> <span class="pre">0</span></code>。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">person1.name</span> <span class="pre">=</span> <span class="pre">&quot;张三&quot;</span> </code></p>
+<ul class="simple">
+<li><p>在常量池创建<code class="docutils literal notranslate"><span class="pre">String</span>&#160; <span class="pre">&quot;张三&quot;</span></code>,并将<code class="docutils literal notranslate"><span class="pre">name</span></code>指向<code class="docutils literal notranslate"><span class="pre">&quot;张三&quot;</span> </code>。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">person1.age</span> <span class="pre">=</span> <span class="pre">20</span></code></p>
+<ul class="simple">
+<li><p>修改<code class="docutils literal notranslate"><span class="pre">age</span></code>的值为<code class="docutils literal notranslate"><span class="pre">20</span></code>。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">person1.walk();</span></code></p>
+<ul>
+<li><p>在<code class="docutils literal notranslate"><span class="pre">Person.class</span></code>文件加载时，静态方法和非静态方法都会加载到方法区中，只不过要调用到非静态方法时需要先实例化一个对象，对象才能调用非静态方法。如果让类中所有的非静态方法都随着对象的实例化而建立一次，那么会大量消耗内存资源，
+所以才会让所有对象共享这些非静态方法，然后用<code class="docutils literal notranslate"><span class="pre">this</span></code>关键字指向调用非静态方法的对象。</p></li>
+<li><p>方法<code class="docutils literal notranslate"><span class="pre">walk()</span></code>中省略了<code class="docutils literal notranslate"><span class="pre">this</span></code></p></li>
+<li><p>不省略的写法为</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">walk</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;姓名为：&quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">+</span> <span class="s">&quot;年龄为：&quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="na">age</span> <span class="o">+</span> <span class="s">&quot;正在散步&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3><span class="section-number">8.2.6. </span>类的访问机制<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>在一个类中的访问机制：类中的方法可以直接访问类中的成员变量。</p></li>
+<li><p>例外：<code class="docutils literal notranslate"><span class="pre">static方法访问非static，编译不通过。</span></code></p></li>
+<li><p>在不同类中的访问机制：先创建要访问类的对象，再用对象访问类中定义的成员。</p></li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h3><span class="section-number">8.2.7. </span>匿名对象<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>我们也可以不定义对象的句柄，而直接调用这个对象的方法。这样的对象叫做匿名对象。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> <span class="n">Person</span><span class="p">().</span><span class="na">walk</span><span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>使用情况</p>
+<ul class="simple">
+<li><p>如果对一个对象只需要进行一次方法调用，那么就可以使用匿名对象。</p></li>
+<li><p>我们经常将匿名对象作为实参传递给一个方法调用。</p></li>
+</ul>
+</li>
+<li><p>使用</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>//匿名对象的使用
+mall.show(new Phone());
+其中，
+class PhoneMall{
+	public void show(Phone phone){
+		phone.sendEmail();
+		phone.playGame();
+	}
+
+}
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h3><span class="section-number">8.2.8. </span>对象的声明周期<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>出生:</p>
+<ul>
+<li><p>每次使用new关键字的时候,就会在堆内存空间中开辟新空间,此时对象就开始存在了</p></li>
+</ul>
+</li>
+<li><p>死亡:</p>
+<ul>
+<li><p>当堆中的对象,没有任何变量的引用,此时对象就会成为垃圾,就会等待<code class="docutils literal notranslate"><span class="pre">GC</span></code>来回收,对象销毁后,会释放原有的空间</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id14">
+<h2><span class="section-number">8.3. </span>类与类之间的关系说明<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h2>
+<div class="section" id="dependency">
+<h3><span class="section-number">8.3.1. </span>依赖关系（Dependency）<a class="headerlink" href="#dependency" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>对象之间最弱的一种关联方式，是临时性的关联。代码中一般指由局部变量、函数参数、返回值建立的对于其他对象的调用关系。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">B</span> <span class="nf">method</span> <span class="p">(</span><span class="n">C</span> <span class="n">c</span> <span class="p">,</span> <span class="n">D</span> <span class="n">d</span><span class="p">){</span>
+        <span class="n">E</span> <span class="n">e</span> <span class="o">=</span> <span class="k">new</span> <span class="n">E</span><span class="p">();</span>
+        <span class="n">B</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这个代码结构中，表示A 类依赖了B,C,D,E 类</p>
+<p><img alt="image-20201208141827120" src="_images/Dependency.png" /></p>
+</li>
+</ul>
+</div>
+<div class="section" id="association">
+<h3><span class="section-number">8.3.2. </span>关联关系（Association）<a class="headerlink" href="#association" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>对象之间一种引用关系，比如客户类与订单类之间的关系。这种关系通常使用类的属性表达。  关联可以有方向，即导航。一般不作说明的时候，导航是双向的，不需要在线上标出箭头.大部分情况下导航是单向的，可以加一个箭头表示</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Employee</span><span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">eid</span><span class="p">;</span><span class="c1">//员工编号 </span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span><span class="c1">//员工姓名 </span>
+    <span class="kd">private</span> <span class="n">Computer</span> <span class="n">coumputer</span><span class="p">;</span><span class="c1">//员工所使用的电脑</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Computer</span><span class="p">{</span> 
+<span class="p">}</span> 
+</pre></div>
+</div>
+<p><img alt="image-20201208143248032" src="_images/Association.png" /></p>
+</li>
+<li><p>关联表示类之间的“持久”关系，这种关系一般表示一种重要的业务之间的关系，需要保存的，或者说需要“持久化”的，或者说需要保存到数据库中的。另外，依赖表示类之间的是一种“临时、短暂”关系，这种关系是不需要保存的。</p></li>
+</ul>
+</div>
+<div class="section" id="aggregation">
+<h3><span class="section-number">8.3.3. </span>聚合（Aggregation）<a class="headerlink" href="#aggregation" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>聚合（关联关系的一种）：表示 has-a 的关系。与关联关系一样，聚合关系也是通过实例变量来实现这样关系的。关联关系和聚合关系来语法上是没办法区分的，从语义上才能更好的区分两者的区别。</p></li>
+<li><p>如汽车类与引挚类，轮胎类之间的关系就是整体与个体的关系。 与关联关系一样，聚合关系也是通过实例变量来实现的。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Car</span><span class="p">{</span> 
+    <span class="kd">private</span> <span class="n">Engine</span> <span class="n">engine</span><span class="p">;</span><span class="c1">//引擎 </span>
+    <span class="kd">private</span> <span class="n">Tyre</span><span class="o">[]</span> <span class="n">tyres</span><span class="p">;</span><span class="c1">//轮胎 </span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><img alt="image-20201208142536947" src="_images/Aggregation.png" /></p>
+</li>
+<li><p>关联和聚集（聚合）的区别：</p>
+<ul class="simple">
+<li><p>关联关系所涉及的两个对象是处在同一个层次上的。比如人和自行车就是一种关联关系，而不是聚合关系，因为人不是由自行车组成的。</p></li>
+<li><p>聚合关系涉及的两个对象处于不平等的层次上，一个代表整体，一个代表部分。比如电脑和它的显示器、键盘、主板以及内存就是聚集关系，因为主板是电脑的组成部分。</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="composite">
+<h3><span class="section-number">8.3.4. </span>组合（Composite）<a class="headerlink" href="#composite" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>对象A 包含对象 B，对象 B 离开对象A 没有实际意义。是一种更强的关联关系。人包含手，手离开人的躯体就失去了它应有的作用。</p></li>
+<li><p>组合：表示 contains-a 的关系，是一种强烈的包含关系。组合类负责被组合类的生命周期。也使用属性表达组合关系，是关联关系的一种，是比聚合关系强的关系。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Window</span><span class="p">{</span> 
+    <span class="kd">private</span> <span class="n">Menu</span> <span class="n">menu</span><span class="p">;</span><span class="c1">//菜单 </span>
+    <span class="kd">private</span> <span class="n">Slider</span> <span class="n">slider</span><span class="p">;</span><span class="c1">//滑动条 </span>
+    <span class="kd">private</span> <span class="n">Panel</span> <span class="n">panel</span><span class="p">;</span><span class="c1">//工作区 </span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><img alt="image-20201208142855899" src="_images/Composite.png" /></p>
+</li>
+</ul>
+</div>
+<div class="section" id="generalization-is-a">
+<h3><span class="section-number">8.3.5. </span>继承（Generalization，又称为泛化，is-a 的关系）<a class="headerlink" href="#generalization-is-a" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>类与类的继承关系，类与接口的实现关系。</p></li>
+<li><p>场景：父与子、动物与人、植物与树</p>
+<p><img alt="image-20201208143047215" src="_images/Generalization.png" /></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id15">
+<h2><span class="section-number">8.4. </span>类的结构之一：属性<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id16">
+<h3><span class="section-number">8.4.1. </span>属性<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>语法格式：</p>
+<p><code class="docutils literal notranslate"><span class="pre">修饰符</span> <span class="pre">数据类型</span> <span class="pre">属性名</span> <span class="pre">=</span> <span class="pre">初始化值</span> <span class="pre">;</span> </code></p>
+<ul class="simple">
+<li><p>修饰符</p>
+<ul>
+<li><p>常用的权限修饰符有：private、缺省、protected、public</p></li>
+<li><p>其他修饰符：static、final</p></li>
+</ul>
+</li>
+<li><p>数据类型</p>
+<ul>
+<li><p>任何基本数据类型(如int、Boolean) 或 任何引用数据类型。</p></li>
+</ul>
+</li>
+<li><p>属性名</p>
+<ul>
+<li><p>属于标识符，符合命名规则和规范即可。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h3><span class="section-number">8.4.2. </span>变量的分类：成员变量与局部变量<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>在方法体外，类体内声明的变量称为成员变量。</p></li>
+<li><p>在方法体内部声明的变量称为局部变量。</p>
+<p><img alt="变量" src="_images/variable.png" /></p>
+</li>
+<li><p>成员变量(属性)和局部变量的异同</p>
+<ul class="simple">
+<li><p>相同点</p>
+<ul>
+<li><p>定义变量的格式：<code class="docutils literal notranslate"><span class="pre">数据类型</span>&#160; <span class="pre">变量名</span> <span class="pre">=</span> <span class="pre">变量值</span></code></p></li>
+<li><p>先声明，后使用</p></li>
+<li><p>变量都其对应的作用域</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不同点</p>
+<ul class="simple">
+<li><p>在类中声明的位置的不同</p>
+<ul>
+<li><p>属性：直接定义在类的一对{}内</p></li>
+<li><p>局部变量：声明在方法内、方法形参、代码块内、构造器形参、构造器内部的变量</p></li>
+<li><p>关于权限修饰符的不同</p>
+<ul>
+<li><p>可以在声明属性时，指明其权限，使用权限修饰符。常用的权限修饰符：private、public、缺省、protected</p></li>
+<li><p>局部变量：不可以使用权限修饰符。</p></li>
+</ul>
+</li>
+<li><p>默认初始化值的情况：</p>
+<ul>
+<li><p>类的属性，根据其类型，都默认初始化值。</p>
+<ul>
+<li><p>整型（byte、short、int、long：0）</p></li>
+<li><p>浮点型（float、double：0.0）</p></li>
+<li><p>字符型（char：0  （或’\u0000’））</p></li>
+<li><p>布尔型（boolean：false）</p></li>
+<li><p>引用数据类型（类、数组、接口：null）</p></li>
+</ul>
+</li>
+<li><p>局部变量：没默认初始化值。局部变量除形参外，均需显式初始化。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>成员变量（属性）和局部变量的区别对照表</p></li>
+</ul>
+</li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">成员变量</th>
+<th align="left">局部变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">声明的位置</td>
+<td align="left">直接声明在类中</td>
+<td align="left">方法形参或内部、代码块内、构造器内等</td>
+</tr>
+<tr>
+<td align="left">修饰符</td>
+<td align="left"><code>private、public、static、final</code>等</td>
+<td align="left">不能用权限修饰符修饰，可以用final修饰</td>
+</tr>
+<tr>
+<td align="left">初始化值</td>
+<td align="left">有默认初始化值</td>
+<td align="left">没有默认初始化值，必须显式赋值，方可使用</td>
+</tr>
+<tr>
+<td align="left">内存加载位置</td>
+<td align="left">堆空间 或 静态域内</td>
+<td align="left">栈空间</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="id18">
+<h2><span class="section-number">8.5. </span>类的结构之一：方法<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h2>
+<div class="section" id="method">
+<h3><span class="section-number">8.5.1. </span>方法(method  函数)<a class="headerlink" href="#method" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>方法是类或对象行为特征的抽象，用来完成某个功能操作。在某些语言中也称为函数或过程。</p></li>
+<li><p>将功能封装为方法的目的是，可以实现代码重用，简化代码</p></li>
+<li><p>Java里的方法不能独立存在，所有的方法必须定义在类里。</p></li>
+<li><p>方法的声明格式：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>修饰符 返回值 类型 方法名(参数类型形参1, 参数类型形参2, …){
+    方法体程序代码;
+    return 返回值;
+}
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>修饰符：<code class="docutils literal notranslate"><span class="pre">public,缺省,private,</span> <span class="pre">protected</span></code>等</p></li>
+<li><p>返回值类型：</p>
+<ul>
+<li><p>没有返回值：void。</p></li>
+<li><p>有返回值，声明出返回值的类型。与方法体中<code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">返回值</span></code>搭配使用</p></li>
+</ul>
+</li>
+<li><p>方法名：属于标识符，命名时遵循标识符命名规则和规范，<code class="docutils literal notranslate"><span class="pre">见名知意</span></code>。</p></li>
+<li><p>形参列表：可以包含零个，一个或多个参数。多个参数时，中间用<code class="docutils literal notranslate"><span class="pre">,</span></code>隔开</p></li>
+<li><p>返回值：方法在执行完毕后返还给调用它的程序的数据</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id19">
+<h3><span class="section-number">8.5.2. </span>方法的分类：<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>按照是否有形参及返回值</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th></th>
+<th>无返回值</th>
+<th>有返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无形参</td>
+<td><code>void 方法名 (){}</code></td>
+<td><code>返回值的类型 方法名 () {}</code></td>
+</tr>
+<tr>
+<td>有形参</td>
+<td><code>void 方法名 (形参列表){}</code></td>
+<td><code>返回值的类型 方法名(形参列表) {}</code></td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="id20">
+<h3><span class="section-number">8.5.3. </span>方法的调用<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>方法通过方法名被调用，且只有被调用才会执行。</p></li>
+<li><p>方法调用的过程分析</p>
+<p><img alt="方法调用的过程" src="_images/Methodcallprocess.png" /></p>
+</li>
+<li><p>注 意：</p>
+<ul class="simple">
+<li><p>方法被调用一次，就会执行一次</p></li>
+<li><p>没有具体返回值的情况，返回值类型用关键字void表示，那么方法体中可以不必使用return语句。如果使用，仅用来结束方法。</p></li>
+<li><p>定义方法时，方法的结果应该返回给调用者，交由调用者处理。</p></li>
+<li><p>方法中只能调用方法或属性，不可以在方法内部定义方法。</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="return">
+<h3><span class="section-number">8.5.4. </span><code class="docutils literal notranslate"><span class="pre">return</span></code>关键字：<a class="headerlink" href="#return" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>使用范围：使用在方法体中</p></li>
+<li><p>作用:</p>
+<ul>
+<li><p>结束方法</p></li>
+<li><p>针对于返回值类型的方法，使用<code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">数据</span></code>方法返回所要的数据。</p></li>
+<li><p>注意点：<code class="docutils literal notranslate"><span class="pre">return</span></code>关键字后面不可以声明执行语句。</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id21">
+<h3><span class="section-number">8.5.5. </span>重载<a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>定义：在同一个类中，允许存在一个以上的同名方法，只要它们的参数个数或者参数类型不同即可。</p></li>
+<li><p>特点：与返回值类型无关，只看参数列表，且参数列表必须不同。(参数个数或参数类型)。调用时，根据方法参数列表的不同来区别。</p></li>
+<li><p>两同一不同:</p>
+<ul>
+<li><p>两同：</p>
+<ul>
+<li><p>同一个类</p></li>
+<li><p>相同方法名</p></li>
+</ul>
+</li>
+<li><p>一不同：</p>
+<ul>
+<li><p>参数列表不同：参数个数不同，参数类型不同</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h3><span class="section-number">8.5.6. </span>可变个数的形参<a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">JavaSE</span> <span class="pre">5.0</span> </code>中提供了<code class="docutils literal notranslate"><span class="pre">Varargs(variable</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">arguments)</span></code>机制，允许直接定义能和多个实参相匹配的形参。从而，可以用一种更简单的方式，来传递个数可变的实参。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JDK</span> <span class="pre">5.0</span></code>以前：采用数组形参来定义方法，传入多个同一类型变量</p>
+<p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">void</span> <span class="pre">test(int</span> <span class="pre">a</span> <span class="pre">,String[]</span> <span class="pre">books){};</span></code></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JDK5.0</span></code>：采用可变个数形参来定义方法，传入多个同一类型变量</p>
+<p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">void</span> <span class="pre">test(int</span> <span class="pre">a</span> <span class="pre">,String…books){};</span></code></p>
+</li>
+<li><p>说明</p>
+<ol class="simple">
+<li><p>声明格式：方法名(参数的类型名 …参数名)</p></li>
+<li><p>可变参数：方法参数部分指定类型的参数个数是可变多个：0个，1个或多个</p></li>
+<li><p>可变个数形参的方法与同名的方法之间，彼此构成重载</p></li>
+<li><p>可变参数方法的使用与方法参数部分使用数组是一致的</p></li>
+<li><p><strong>方法的参数部分有可变形参，需要放在形参声明的最后</strong></p></li>
+<li><p>在一个方法的形参位置，最多只能声明一个可变个数形参</p></li>
+</ol>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">books</span><span class="p">)</span> <span class="p">{}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">String</span><span class="p">...</span> <span class="n">books</span><span class="p">)</span> <span class="p">{}</span>
+<span class="c1">// 这个不构成重载 他们两个本质一样</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h3><span class="section-number">8.5.7. </span>方法内变量的赋值<a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>规则</p>
+<ul class="simple">
+<li><p>如果变量是基本数据类型，此时赋值的是变量所保存的数据值。</p></li>
+<li><p>如果变量是引用数据类型，此时赋值的是变量所保存的数据的地址值。</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;***********基本数据类型：****************&quot;</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;m = &quot;</span> <span class="o">+</span> <span class="n">m</span> <span class="o">+</span> <span class="s">&quot;, n = &quot;</span> <span class="o">+</span> <span class="n">n</span><span class="p">);</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;m = &quot;</span> <span class="o">+</span> <span class="n">m</span> <span class="o">+</span> <span class="s">&quot;, n = &quot;</span> <span class="o">+</span> <span class="n">n</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;***********引用数据类型：****************&quot;</span><span class="p">);</span>
+        <span class="n">Order</span> <span class="n">o1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Order</span><span class="p">();</span>
+        <span class="n">o1</span><span class="p">.</span><span class="na">id</span> <span class="o">=</span> <span class="mi">1001</span><span class="p">;</span>
+        <span class="n">Order</span> <span class="n">o2</span> <span class="o">=</span> <span class="n">o1</span><span class="p">;</span><span class="c1">//赋值以后，o1和o2的地址值相同，都指向了堆空间中同一个对象实体。</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;o1.id = &quot;</span> <span class="o">+</span> <span class="n">o1</span><span class="p">.</span><span class="na">id</span> <span class="o">+</span> <span class="s">&quot;,o2.id = &quot;</span> <span class="o">+</span><span class="n">o2</span><span class="p">.</span><span class="na">id</span><span class="p">);</span>
+        <span class="n">o2</span><span class="p">.</span><span class="na">id</span> <span class="o">=</span> <span class="mi">1002</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;o1.id = &quot;</span> <span class="o">+</span> <span class="n">o1</span><span class="p">.</span><span class="na">id</span> <span class="o">+</span> <span class="s">&quot;,o2.id = &quot;</span> <span class="o">+</span><span class="n">o2</span><span class="p">.</span><span class="na">id</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Order</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/*</span>
+<span class="cm">***********基本数据类型：****************</span>
+<span class="cm">m = 10, n = 10</span>
+<span class="cm">m = 10, n = 20</span>
+<span class="cm">***********引用数据类型：****************</span>
+<span class="cm">o1.id = 1001,o2.id = 1001</span>
+<span class="cm">o1.id = 1002,o2.id = 1002 */</span>
+</pre></div>
+</div>
+</li>
+<li><p>基本数据类型</p>
+<p><img alt="基本数据类型" src="_images/Basicdatatype.gif" /></p>
+</li>
+<li><p>引用数据类型</p>
+<p><img alt="引用数据类型" src="_images/Referencedatatype.gif" /></p>
+</li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h3><span class="section-number">8.5.8. </span>值传递机制<a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>方法，必须由其所在类或对象调用才有意义。若方法含有参数：</p>
+<ul class="simple">
+<li><p>形参：方法声明时的参数</p></li>
+<li><p>实参：方法调用时实际传给形参的参数值</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Java</span></code>里方法的参数传递方式只有一种：值传递。 即将实际参数值的副本（复制品）传入方法内，而参数本身不受影响。</p>
+<ul class="simple">
+<li><p>形参是基本数据类型：将实参基本数据类型变量的**<code class="docutils literal notranslate"><span class="pre">数据值</span></code>**传递给形参</p></li>
+<li><p>形参是引用数据类型：将实参引用数据类型变量的**<code class="docutils literal notranslate"><span class="pre">地址值</span></code>**传递给形参</p></li>
+</ul>
+</li>
+<li><p>基本数据类型</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;main方法中 m:&quot;</span> <span class="o">+</span> <span class="n">m</span> <span class="o">+</span> <span class="s">&quot;  n:&quot;</span> <span class="o">+</span> <span class="n">n</span><span class="p">);</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;main方法中 m:&quot;</span> <span class="o">+</span> <span class="n">m</span> <span class="o">+</span> <span class="s">&quot;  n:&quot;</span> <span class="o">+</span> <span class="n">n</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;swap方法中 m:&quot;</span> <span class="o">+</span> <span class="n">m</span> <span class="o">+</span> <span class="s">&quot;  n:&quot;</span> <span class="o">+</span> <span class="n">n</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="cm">/*</span>
+<span class="cm">main方法中 m:10  n:20</span>
+<span class="cm">swap方法中 m:20  n:10</span>
+<span class="cm">main方法中 m:10  n:20*/</span>
+</pre></div>
+</div>
+<p><img alt="值传递基本数据类型" src="_images/Elementarydatatypevaluepassed.gif" /></p>
+</li>
+<li><p>引用数据类型</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Data</span> <span class="n">data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Data</span><span class="p">();</span>
+        <span class="n">data</span><span class="p">.</span><span class="na">m</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">data</span><span class="p">.</span><span class="na">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;main方法中 m:&quot;</span> <span class="o">+</span> <span class="n">data</span><span class="p">.</span><span class="na">m</span> <span class="o">+</span> <span class="s">&quot;  n:&quot;</span> <span class="o">+</span> <span class="n">data</span><span class="p">.</span><span class="na">n</span><span class="p">);</span>
+        <span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;main方法中 m:&quot;</span> <span class="o">+</span> <span class="n">data</span><span class="p">.</span><span class="na">m</span> <span class="o">+</span> <span class="s">&quot;  n:&quot;</span> <span class="o">+</span> <span class="n">data</span><span class="p">.</span><span class="na">n</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="n">Data</span> <span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="na">m</span><span class="p">;</span>
+        <span class="n">data</span><span class="p">.</span><span class="na">m</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="na">n</span><span class="p">;</span>
+        <span class="n">data</span><span class="p">.</span><span class="na">n</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;swap方法中的 m:&quot;</span> <span class="o">+</span> <span class="n">data</span><span class="p">.</span><span class="na">m</span> <span class="o">+</span> <span class="s">&quot;  n:&quot;</span> <span class="o">+</span> <span class="n">data</span><span class="p">.</span><span class="na">n</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">Data</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">main方法中 m:10  n:20</span>
+<span class="cm">swap方法中的 m:20  n:10</span>
+<span class="cm">main方法中 m:20  n:10*/</span>
+</pre></div>
+</div>
+<p><img alt="值传递引用数据类型" src="_images/Thevalueofreferencedatatypespassed.gif" /></p>
+</li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h3><span class="section-number">8.5.9. </span>值传递面试题<a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>第一题</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="n">method</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span> <span class="c1">// 需要调用method方法后 打印出a = 100 ,b = 200</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;a = &quot;</span> <span class="o">+</span> <span class="n">a</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;b = &quot;</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>第二题</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">//定义一个int型的数组：int[] arr = new int[]{12,3,3,34,56,77,432};</span>
+<span class="c1">//让数组的每个位置上的值去除以首位置的元素，得到的结果，作为该位置上的新值。遍历新的数组。</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Hello</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span><span class="p">{</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">432</span><span class="p">};</span>
+        <span class="c1">// 方法一</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">/</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// 方法二</span>
+        <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">/</span> <span class="n">temp</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">arr</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="recursion">
+<h3><span class="section-number">8.5.10. </span>递归(recursion)方法<a class="headerlink" href="#recursion" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>递归方法：一个方法体内调用它自身。</p></li>
+<li><p>方法递归包含了一种隐式的循环，它会重复执行某段代码，但这种重复执行无须循环控制。</p></li>
+<li><p>递归一定要向已知方向递归，否则这种递归就变成了无穷递归，类似于死循环。</p></li>
+<li><p>计算1-n之间所自然数的和</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">getSum</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>计算1-n之间所自然数的乘积:n!</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSum1</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">getSum1</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>已知一个数列：<code class="docutils literal notranslate"><span class="pre">f(0)</span> <span class="pre">=</span> <span class="pre">1,f(1)</span> <span class="pre">=</span> <span class="pre">4,f(n+2)=2*f(n+1)</span> <span class="pre">+</span> <span class="pre">f(n)</span></code>,其中n是大于0的整数，求f(10)的值。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+			<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+			<span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
+		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+			<span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>斐波那契数列</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span> <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id26">
+<h2><span class="section-number">8.6. </span>面向对象的特征一：封装性<a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id27">
+<h3><span class="section-number">8.6.1. </span>封装与隐藏<a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>程序设计追求<code class="docutils literal notranslate"><span class="pre">高内聚，低耦合</span></code>。</p>
+<ul>
+<li><p>高内聚 ：类的内部数据操作细节自己完成，不允许外部干涉；</p></li>
+<li><p>低耦合 ：仅对外暴露少量的方法用于使用。</p></li>
+</ul>
+</li>
+<li><p>隐藏对象内部的复杂性，只对外公开简单的接口。便于外界调用，从而提高系统的可扩展性、可维护性。通俗的说，把该隐藏的隐藏起来，该暴露的暴露出来。这就是封装性的设计思想。</p></li>
+<li><p>封装性思想具体的代码体现：</p>
+<ul>
+<li><p>将类的属性xxx私化(private),同时，提供公共的(public)方法来获取(getXxx)和设置(setXxx)此属性的值</p></li>
+<li><p>不对外暴露的私有的方法</p></li>
+<li><p>单例模式（将构造器私有化）</p></li>
+<li><p>如果不希望类在包外被调用，可以将类设置为缺省的。</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id28">
+<h3><span class="section-number">8.6.2. </span><code class="docutils literal notranslate"><span class="pre">Java</span></code>规定的四种权限修饰符<a class="headerlink" href="#id28" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>权限从小到大顺序为：<code class="docutils literal notranslate"><span class="pre">private</span></code> &lt; <code class="docutils literal notranslate"> <span class="pre">缺省</span></code> &lt; <code class="docutils literal notranslate"><span class="pre">protected</span></code> &lt; <code class="docutils literal notranslate"><span class="pre">public</span></code></p></li>
+<li><p>种权限都可以用来修饰类的内部结构：属性、方法、构造器、内部类</p></li>
+<li><p>修饰类的话，只能使用：缺省、public</p></li>
+<li><p>具体的修饰范围：</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="left">修饰符</th>
+<th align="left">类内部</th>
+<th align="left">同一个包</th>
+<th align="left">不同包的子类</th>
+<th align="left">同一个工程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>private</code></td>
+<td align="left"><code>true</code></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">(缺省)</td>
+<td align="left"><code>true</code></td>
+<td align="left"><code>true</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>protected</code></td>
+<td align="left"><code>true</code></td>
+<td align="left"><code>true</code></td>
+<td align="left"><code>true</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>public</code></td>
+<td align="left"><code>true</code></td>
+<td align="left"><code>true</code></td>
+<td align="left"><code>true</code></td>
+<td align="left"><code>true</code></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="section" id="constructor">
+<h2><span class="section-number">8.7. </span>构造器(Constructor）<a class="headerlink" href="#constructor" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id29">
+<h3><span class="section-number">8.7.1. </span>构造器的作用：<a class="headerlink" href="#id29" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>创建对象</p></li>
+<li><p>初始化对象的信息</p></li>
+</ul>
+</div>
+<div class="section" id="id30">
+<h3><span class="section-number">8.7.2. </span>说明<a class="headerlink" href="#id30" title="永久链接至标题">¶</a></h3>
+<ol>
+<li><p>如果没显式的定义类的构造器的话，则系统默认提供一个空参的构造器</p></li>
+<li><p>定义构造器的格式：<code class="docutils literal notranslate"><span class="pre">权限修饰符</span>&#160; <span class="pre">类名(形参列表){}</span></code></p></li>
+<li><p>一个类中定义的多个构造器，彼此构成重载</p></li>
+<li><p>一旦我们显式的定义了类的构造器之后，系统就不再提供默认的空参构造器</p></li>
+<li><p>一个类中，至少会有一个构造器。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+
+    <span class="c1">//构造器</span>
+    <span class="kd">public</span> <span class="nf">Person</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}</span>
+	<span class="c1">// 构成重载</span>
+    <span class="kd">public</span> <span class="nf">Person</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="javabean">
+<h3><span class="section-number">8.7.3. </span><code class="docutils literal notranslate"><span class="pre">JavaBean</span></code><a class="headerlink" href="#javabean" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>类是公共的</p></li>
+<li><p>一个无参的公共的构造器</p></li>
+<li><p>属性，且对应的get、set方法</p></li>
+</ul>
+</div>
+<div class="section" id="id31">
+<h3><span class="section-number">8.7.4. </span>属性赋值的先后顺序<a class="headerlink" href="#id31" title="永久链接至标题">¶</a></h3>
+<ol class="simple">
+<li><p>默认初始化</p></li>
+<li><p>显式初始化</p></li>
+<li><p>构造器中初始化</p></li>
+<li><p>通过”对象.方法” 或 “对象.属性”的方式，赋值</p></li>
+</ol>
+<p>以上操作的先后顺序：① - ② - ③ - ④</p>
+</div>
+</div>
+<div class="section" id="this">
+<h2><span class="section-number">8.8. </span>关键字 <code class="docutils literal notranslate"><span class="pre">this</span></code><a class="headerlink" href="#this" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id32">
+<h3><span class="section-number">8.8.1. </span><code class="docutils literal notranslate"><span class="pre">this</span></code> 可以调用的结构<a class="headerlink" href="#id32" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>属性</p></li>
+<li><p>方法</p></li>
+<li><p>构造器</p></li>
+</ul>
+</div>
+<div class="section" id="id33">
+<h3><span class="section-number">8.8.2. </span><code class="docutils literal notranslate"><span class="pre">this</span></code>调用属性、方法：<a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">this</span></code>理解为：当前对象  或 当前正在创建的对象</p></li>
+<li><p>在类的方法中，我们可以使用<code class="docutils literal notranslate"><span class="pre">this.属性</span></code>或<code class="docutils literal notranslate"><span class="pre">this.方法</span></code>的方式，调用当前对象属性或方法。</p></li>
+<li><p>通常情况下，我们都择省略<code class="docutils literal notranslate"><span class="pre">this.</span></code>。特殊情况下，如果方法的形参和类的属性同名时，我们必须显式的使用<code class="docutils literal notranslate"><span class="pre">this.变量</span></code>的方式，表明此变量是属性，而非形参。</p></li>
+</ul>
+</div>
+<div class="section" id="id34">
+<h3><span class="section-number">8.8.3. </span><code class="docutils literal notranslate"><span class="pre">this</span></code>调用构造器：<a class="headerlink" href="#id34" title="永久链接至标题">¶</a></h3>
+<ol class="simple">
+<li><p>我们在类的构造器中，可以显式的使用<code class="docutils literal notranslate"><span class="pre">this(形参列表)</span></code>方式，调用本类中指定的其他构造器</p></li>
+<li><p>构造器中不能通过<code class="docutils literal notranslate"><span class="pre">this(形参列表)</span></code>方式调用自己</p></li>
+<li><p>如果一个类中有<code class="docutils literal notranslate"><span class="pre">n</span></code>个构造器，则最多有 <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">1</span></code>构造器中使用了<code class="docutils literal notranslate"><span class="pre">this(形参列表)</span></code></p></li>
+<li><p>规定：<code class="docutils literal notranslate"><span class="pre">this(形参列表)</span></code>必须声明在当前构造器的首行</p></li>
+<li><p>构造器内部，最多只能声明一个<code class="docutils literal notranslate"><span class="pre">this(形参列表)</span></code>，用来调用其他的构造器</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="package-import">
+<h2><span class="section-number">8.9. </span>关键字：<code class="docutils literal notranslate"><span class="pre">package/import</span></code><a class="headerlink" href="#package-import" title="永久链接至标题">¶</a></h2>
+<div class="section" id="package">
+<h3><span class="section-number">8.9.1. </span><code class="docutils literal notranslate"><span class="pre">package</span></code>的使用<a class="headerlink" href="#package" title="永久链接至标题">¶</a></h3>
+<ol class="simple">
+<li><p>为了更好的实现项目中类的管理，提供包的概念</p></li>
+<li><p>使用<code class="docutils literal notranslate"><span class="pre">package</span></code>声明类或接口所属的包，声明在源文件的首行</p></li>
+<li><p>包，属于标识符，遵循标识符的命名规则、规范(<code class="docutils literal notranslate"><span class="pre">xxxyyyzzz</span></code>)、<code class="docutils literal notranslate"><span class="pre">见名知意</span></code></p></li>
+<li><p>每<code class="docutils literal notranslate"><span class="pre">.</span></code>一次，就代表一层文件目录。</p></li>
+</ol>
+</div>
+<div class="section" id="mvc">
+<h3><span class="section-number">8.9.2. </span>MVC的设计模式<a class="headerlink" href="#mvc" title="永久链接至标题">¶</a></h3>
+<p><img alt="image-20201207185750619" src="_images/mvc.png" /></p>
+</div>
+<div class="section" id="jdk">
+<h3><span class="section-number">8.9.3. </span><code class="docutils literal notranslate"><span class="pre">JDK中</span></code>的主要包介绍：<a class="headerlink" href="#jdk" title="永久链接至标题">¶</a></h3>
+<p><img alt="image-20201207185827217" src="_images/jdk.png" /></p>
+</div>
+<div class="section" id="import">
+<h3><span class="section-number">8.9.4. </span><code class="docutils literal notranslate"><span class="pre">import</span></code>的使用：<a class="headerlink" href="#import" title="永久链接至标题">¶</a></h3>
+<ol class="simple">
+<li><p>在源文件中显式的使用<code class="docutils literal notranslate"><span class="pre">import</span></code>结构导入指定包下的类、接口</p></li>
+<li><p>声明在包的声明和类的声明之间</p></li>
+<li><p>如果需要导入多个结构，则并列写出即可</p></li>
+<li><p>可以使用<code class="docutils literal notranslate"><span class="pre">xxx.*</span></code>的方式，表示可以导入<code class="docutils literal notranslate"><span class="pre">xxx</span></code>包下的所结构</p></li>
+<li><p>如果使用的类或接口是<code class="docutils literal notranslate"><span class="pre">java.lang</span></code>包下定义的，则可以省略<code class="docutils literal notranslate"><span class="pre">import</span></code>结构</p></li>
+<li><p>如果使用的类或接口是本包下定义的，则可以省略<code class="docutils literal notranslate"><span class="pre">import</span></code>结构</p></li>
+<li><p>如果在源文件中，使用了不同包下的同名的类，则必须至少一个类需要以全类名的方式显示。</p></li>
+<li><p>使用<code class="docutils literal notranslate"><span class="pre">xxx.*</span></code>方式表明可以调用<code class="docutils literal notranslate"><span class="pre">xxx</span></code>包下的所结构。但是如果使用的是<code class="docutils literal notranslate"><span class="pre">xxx</span></code>子包下的结构，则仍需要显式导入</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">static</span></code>:导入指定类或接口中的静态结构:属性或方法。</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="oopsecond.html" class="btn btn-neutral float-right" title="9. 面对对象-中" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="array.html" class="btn btn-neutral float-left" title="7. 数组" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 版权所有 2020, Frenude
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

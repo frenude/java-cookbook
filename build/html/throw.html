@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>11. 异常 &mdash; Java-Cookbook 0.1.1 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="prev" title="10. 面对对象-下" href="oopthird.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Java-Cookbook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="helloworld.html">1. 第一个<code class="docutils literal notranslate"><span class="pre">JAVA</span></code>程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programmingspecification.html">2. 编程规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constant.html">3. 常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable.html">4. 变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operator.html">5. 运算符</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processcontrol.html">6. 流程控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="array.html">7. 数组</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopfirst.html">8. 面向对象-上</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopsecond.html">9. 面对对象-中</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oopthird.html">10. 面对对象-下</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. 异常</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">11.1. 异常概述</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">11.2. 异常体系结构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">11.3. 异常处理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#java">11.3.1. java异常处理的抓抛模型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">11.3.2. 异常处理方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">11.3.3. 自定义一个异常类</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Java-Cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><span class="section-number">11. </span>异常</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/throw.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">11. </span>异常<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">11.1. </span>异常概述<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>在<code class="docutils literal notranslate"><span class="pre">Java</span></code>语言中，将程序执行中发生的不正常情况称为“异常”。(开发过程中的语法错误和逻辑错误不是异常)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Java</span></code>程序在执行过程中所发生的异常事件可分为两类：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Error</span></code>：<code class="docutils literal notranslate"><span class="pre">Java</span></code>虚拟机无法解决的严重问题。如：<code class="docutils literal notranslate"><span class="pre">JVM</span></code>系统内部错误、资源耗尽等严重情况。比如：<code class="docutils literal notranslate"><span class="pre">StackOverflowError</span></code>和<code class="docutils literal notranslate"><span class="pre">OOM</span></code>。一般不编写针对性的代码进行处理。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Exception</span></code>: 其它因编程错误或偶然的外在因素导致的一般性问题，可以使用针对性的代码进行处理。例如：</p>
+<ul>
+<li><p>空指针访问</p></li>
+<li><p>试图读取不存在的文件</p></li>
+<li><p>网络连接中断</p></li>
+<li><p>数组角标越界</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>对于这些错误，一般有两种解决方法：一是遇到错误就终止程序的运行。另一种方法是由程序员在编写程序时，就考虑到错误的检测、错误消息的提示，以及错误的处理。</p></li>
+<li><p>捕获错误最理想的是在编译期间，但有的错误只有在运行时才会发生。比如：除数为0，数组下标越界等</p></li>
+<li><p>分类：编译时异常和运行时异常</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">11.2. </span>异常体系结构<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p><img alt="异常体系结构" src="_images/throw.png" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>* java.lang.Throwable
+*     |-----java.lang.Error:一般不编写针对性的代码进行处理。
+*     |-----java.lang.Exception:可以进行异常的处理
+*        |------编译时异常(checked)
+*              |-----IOException
+*                 |-----FileNotFoundException
+*              |-----ClassNotFoundException
+*        |------运行时异常(unchecked,RuntimeException)
+*              |-----NullPointerException
+*              |-----ArrayIndexOutOfBoundsException
+*              |-----ClassCastException
+*              |-----NumberFormatException
+*              |-----InputMismatchException
+*              |-----ArithmeticException
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">java.lang.Throwable</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">java.lang.Error:一般不编写针对性的代码进行处理。</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">java.lang.Exception:可以进行异常的处理</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">编译时异常(checked)</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">IOException</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">FileNotFoundException</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClassNotFoundException</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">运行时异常(unchecked,RuntimeException)</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NullPointerException</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayIndexOutOfBoundsException</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClassCastException</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NumberFormatException</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">InputMismatchException</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArithmeticException</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2><span class="section-number">11.3. </span>异常处理<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="section" id="java">
+<h3><span class="section-number">11.3.1. </span>java异常处理的抓抛模型<a class="headerlink" href="#java" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">抛</span></code>：</p>
+<ul>
+<li><p>程序在正常执行的过程中，一旦出现异常，就会在异常代码处生成一个对应异常类的对象。并将此对象抛出。一旦抛出对象以后，其后的代码就不再执行。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">抓</span></code>:</p>
+<ul>
+<li><p>可以理解为异常的处理方式：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">try-catch-finally</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">throws</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">11.3.2. </span>异常处理方式<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">try-catch-finally</span></code></p>
+<ul>
+<li><p>结构</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">{</span>
+        <span class="c1">//可能出现异常的代码</span>
+    <span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">异常类型1</span> <span class="n">变量名1</span><span class="p">){</span>
+    	<span class="c1">//处理异常的方式1</span>
+    <span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">异常类型2</span> <span class="n">变量名2</span><span class="p">){</span>
+     	<span class="c1">//处理异常的方式2</span>
+    <span class="p">}...</span>
+    <span class="k">finally</span><span class="p">{</span>
+ 		<span class="c1">//一定会执行的代码</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>说明</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">finally</span></code>是可选的。</p></li>
+<li><p>使用<code class="docutils literal notranslate"><span class="pre">try</span></code>将可能出现异常代码包装起来，在执行过程中，一旦出现异常，就会生成一个对应异常类的对象，根据此对象的类型，去<code class="docutils literal notranslate"><span class="pre">catch</span></code>中进行匹配</p></li>
+<li><p>一旦<code class="docutils literal notranslate"><span class="pre">try</span></code>中的异常对象匹配到某一个<code class="docutils literal notranslate"><span class="pre">catch</span></code>时，就进入<code class="docutils literal notranslate"><span class="pre">catch</span></code>中进行异常的处理。一旦处理完成，就跳出当前的<code class="docutils literal notranslate"><span class="pre">try-catch</span></code>结构（在没写<code class="docutils literal notranslate"><span class="pre">finally</span></code>的情况。继续执行其后的代码</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">catch</span></code>中的异常类型如果没子父类关系，则谁声明在上，谁声明在下无所谓。<code class="docutils literal notranslate"><span class="pre">catch</span></code>中的异常类型如果满足子父类关系，则要求子类一定声明在父类的上面。否则，报错</p></li>
+<li><p>常用的异常对象处理的方式：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span>&#160; <span class="pre">getMessage()</span>&#160;&#160; </code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">printStackTrace()</span></code></p></li>
+</ul>
+</li>
+<li><p>在<code class="docutils literal notranslate"><span class="pre">try</span></code>结构中声明的变量，再出了<code class="docutils literal notranslate"><span class="pre">try</span></code>结构以后，就不能再被调用</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">try-catch-finally</span></code>结构可以嵌套</p></li>
+<li><p>注意：</p>
+<ul class="simple">
+<li><p>finally中声明的是一定会被执行的代码。即使catch中又出现异常了，try中return语句，catch中return语句等情况。</p></li>
+<li><p>像数据库连接、输入输出流、网络编程<code class="docutils literal notranslate"><span class="pre">Socket</span></code>等资源，<code class="docutils literal notranslate"><span class="pre">JVM</span></code>是不能自动的回收的，我们需要自己手动的进行资源的释放。此时的资源释放，就需要声明在<code class="docutils literal notranslate"><span class="pre">finally</span></code>中。</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TryCatchFinally</span> <span class="p">{</span>
+
+    <span class="c1">// NumberFormatException</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">numberFormatException</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">method</span><span class="p">();</span>
+
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">method</span><span class="p">(){</span>
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;123&quot;</span><span class="p">;</span>
+        <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;abc&quot;</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">num</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">catch</span> <span class="p">(</span><span class="n">NumberFormatException</span> <span class="n">e</span><span class="p">){</span>
+            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+            <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span><span class="k">finally</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;一定会执行到我&quot;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">throws</span> <span class="pre">+</span> <span class="pre">异常类型</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">throws</span> <span class="pre">+异常类型</span></code>写在方法的声明处。指明此方法执行时，可能会抛出的异常类型。</p></li>
+<li><p>一旦当方法体执行时，出现异常，仍会在异常代码处生成一个异常类的对象，此对象满足<code class="docutils literal notranslate"><span class="pre">throws</span></code>后异常类型时，就会被抛出。异常代码后续的代码，就不再执行!</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">try-catch-finally</span></code>:真正的将异常给处理掉了。<code class="docutils literal notranslate"><span class="pre">throws</span></code>的方式只是将异常抛给了方法的调用者。并没有真正将异常处理掉。</p></li>
+<li><p>体会开发中应该如何选择两种处理方式？</p>
+<ul class="simple">
+<li><p>如果父类中被重写的方法没<code class="docutils literal notranslate"><span class="pre">throws</span></code>方式处理异常，则子类重写的方法也不能使用throws，意味着如果子类重写的方法中异常，必须使用<code class="docutils literal notranslate"><span class="pre">try-catch-finally</span></code>方式处理。</p></li>
+<li><p>执行的方法<code class="docutils literal notranslate"><span class="pre">a</span></code>中，先后又调用了另外的几个方法，这几个方法是递进关系执行的。建议这几个方法使用<code class="docutils literal notranslate"><span class="pre">throws</span></code>的方式进行处理。而执行的方法a可以考虑使用<code class="docutils literal notranslate"><span class="pre">try-catch-finally</span></code>方式进行处理。</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Throws</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">method1</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">method</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">FileNotFoundException</span><span class="p">,</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="s">&quot;hello.txt&quot;</span><span class="p">);</span>
+        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">data</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">((</span><span class="kt">char</span><span class="p">)</span> <span class="n">data</span><span class="p">);</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">fis</span><span class="p">.</span><span class="na">read</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">fis</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">method1</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="p">{</span>
+        <span class="n">method</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>手动抛出异常对象</p>
+<ul>
+<li><p>在程序执行中，除了自动抛出异常对象的情况之外，我们还可以手动的<code class="docutils literal notranslate"><span class="pre">throw</span></code>一个异常类的对象。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">throw</span></code> 和  <code class="docutils literal notranslate"><span class="pre">throws</span></code>区别：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">throw</span></code> 表示抛出一个异常类的对象，生成异常对象的过程。声明在方法体内。(更像动词)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">throws</span></code> 属于异常处理的一种方式，声明在方法的声明处。(更像形容词有异常的)</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Student</span><span class="p">{</span>
+
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">regist</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">id</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+			<span class="k">this</span><span class="p">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="p">;</span>
+		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+			<span class="c1">//手动抛出异常对象</span>
+<span class="c1">//			throw new RuntimeException(&quot;您输入的数据非法！&quot;);</span>
+<span class="c1">//			throw new Exception(&quot;您输入的数据非法！&quot;);</span>
+			<span class="k">throw</span> <span class="k">new</span> <span class="n">MyException</span><span class="p">(</span><span class="s">&quot;不能输入负数&quot;</span><span class="p">);</span>
+		<span class="p">}</span>	
+	<span class="p">}</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="s">&quot;Student [id=&quot;</span> <span class="o">+</span> <span class="n">id</span> <span class="o">+</span> <span class="s">&quot;]&quot;</span><span class="p">;</span>
+	<span class="p">}</span>		
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">11.3.3. </span>自定义一个异常类<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>如何自定义异常类？</p>
+<ul class="simple">
+<li><p>继承于现的异常结构：<code class="docutils literal notranslate"><span class="pre">RuntimeException</span></code> 、<code class="docutils literal notranslate"><span class="pre">Exception</span></code></p></li>
+<li><p>提供全局常量：<code class="docutils literal notranslate"><span class="pre">serialVersionUID</span></code></p></li>
+<li><p>提供重载的构造器</p></li>
+</ul>
+</li>
+<li><p>举例</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyException</span> <span class="kd">extends</span> <span class="n">Exception</span><span class="p">{</span>
+
+	<span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="o">-</span><span class="mi">7034897193246939L</span><span class="p">;</span>
+
+	<span class="kd">public</span> <span class="nf">MyException</span><span class="p">(){</span>
+	<span class="p">}</span>
+
+	<span class="kd">public</span> <span class="nf">MyException</span><span class="p">(</span><span class="n">String</span> <span class="n">msg</span><span class="p">){</span>
+		<span class="kd">super</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="oopthird.html" class="btn btn-neutral float-left" title="10. 面对对象-下" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; 版权所有 2020, Frenude
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
