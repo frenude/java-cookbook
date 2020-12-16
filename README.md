@@ -1,1 +1,1 @@
-# [java-cookbook](source/index.rst)
+# [java-cookbook](https://java-cookbook.readthedocs.io/en/latest/)
