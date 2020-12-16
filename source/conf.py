@@ -77,3 +77,59 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# Output file base name for HTML help builder.
+htmlhelp_basename = 'java-cookbookdoc'
+
+
+# -- Options for LaTeX output ---------------------------------------------
+latex_elements = {  # The paper size ('letterpaper' or 'a4paper').
+    'papersize': 'a4paper',  # The font size ('10pt', '11pt' or '12pt').
+    'pointsize': '12pt', 'classoptions': ',oneside', 'babel': '',  # 必須
+    'inputenc': '',  # 必須
+    'utf8extra': '',  # 必須
+    # Additional stuff for the LaTeX preamble.
+    # use fc-list :lang=zh to see available fonts
+    # \usepackage{indentfirst}
+    # \setlength{\parindent}{2em}
+    'preamble': r"""
+\usepackage{xeCJK}
+\setCJKmainfont{WenQuanYi Micro Hei}
+\setCJKmonofont[Scale=0.9]{WenQuanYi Micro Hei Mono}
+\setCJKfamilyfont{song}{WenQuanYi Micro Hei}
+\setCJKfamilyfont{sf}{WenQuanYi Micro Hei}
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+"""}
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title,
+#  author, documentclass [howto, manual, or own class]).
+latex_documents = [
+    (master_doc, 'java-cookbook.tex', u'java-cookbook Documentation',
+     u'Frenude', 'howto'),
+]
+
+# open for create pdf
+# latex_engine = 'xelatex'
+
+# -- Options for manual page output ---------------------------------------
+
+# One entry per manual page. List of tuples
+# (source start file, name, description, authors, manual section).
+man_pages = [
+    (master_doc, 'java-cookbook', u'java-cookbook Documentation',
+     [author], 1)
+]
+
+
+# -- Options for Texinfo output -------------------------------------------
+
+# Grouping the document tree into Texinfo files. List of tuples
+# (source start file, target name, title, author,
+#  dir menu entry, description, category)
+texinfo_documents = [
+    (master_doc, 'java-cookbook', u'java-cookbook Documentation',
+     author, 'java-cookbook', 'One line description of project.',
+     'Miscellaneous'),
+]
