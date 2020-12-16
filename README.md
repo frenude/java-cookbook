@@ -1,1 +1,1 @@
-# java-cookbook
+# [java-cookbook](source/index.rst)
