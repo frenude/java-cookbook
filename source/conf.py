@@ -16,6 +16,7 @@
 
 
 # -- Project information -----------------------------------------------------
+from recommonmark.transform import AutoStructify
 project = 'Java-Cookbook'
 copyright = '2020, Frenude'
 author = 'Frenude'
@@ -133,3 +134,14 @@ texinfo_documents = [
      author, 'java-cookbook', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+github_doc_root = "https://github.com/frenude/java-cookbook"
+# At the bottom of conf.py
+
+
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+        'url_resolver': lambda url: github_doc_root + url,
+        'auto_toc_tree_section': 'Contents',
+    }, True)
+    app.add_transform(AutoStructify)
