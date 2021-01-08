@@ -13,7 +13,7 @@
 
 - TCP/IP
 
-![TCP](img/TCP.png)
+![](img/tcp.png)
 
 ### IP 
 
